@@ -1,0 +1,27 @@
+{
+  "name": "gulpfile",
+  "version": "1.0.0",
+  "description": "gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maqaro/portfolio.git"
+  },
+  "keywords": [
+    "gulpfile",
+    "js",
+    "scss"
+  ],
+  "author": "basil n",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/maqaro/portfolio/issues"
+  },
+  "homepage": "https://github.com/maqaro/portfolio#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
