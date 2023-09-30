@@ -127,7 +127,7 @@ gulp.task('browser-sync', function() {
 });
 
 /* Watch scss, js and html files, doing different things with each. */
-gulp.task('default', ['sass', 'scripts', 'browser-sync'], function () {
+gulp.task('build', ['sass', 'scripts', 'browser-sync'], function () {
     /* Watch scss, run the sass task on change. */
     gulp.watch(['scss/*.scss', 'scss/**/*.scss'], ['sass'])
     /* Watch app.js file, run the scripts task on change. */
