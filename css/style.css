@@ -689,6 +689,10 @@ a.hover-reverse:hover, a.hover-reverse:focus, a.hover-reverse:active {
   position: relative;
   z-index: 2;
 }
+
+.form-group ,.btn{
+  align-self: center;
+}
 .probootstrap-footer form .form-control {
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: none;
@@ -718,6 +722,13 @@ a.hover-reverse:hover, a.hover-reverse:focus, a.hover-reverse:active {
 .probootstrap-footer form .form-field {
   position: relative;
 }
+
+#submitBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .probootstrap-footer form .btn.btn-subscribe {
   height: 40px;
   line-height: 0px;
@@ -932,7 +943,7 @@ figure:hover figcaption, figure:focus figcaption {
 }
 @media screen and (max-width: 768px) {
   .slides-text {
-    padding-top: 150px;
+    padding-top: 66%;
   }
 }
 
