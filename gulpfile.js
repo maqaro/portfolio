@@ -1,5 +1,6 @@
-var gulp = require('gulp');  
-var sass = require('gulp-sass');
+
+const gulp = require('gulp');
+const sass = require('gulp-sass')(require('sass'));
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var notify = require('gulp-notify');
@@ -52,31 +53,24 @@ gulp.task('minify-main', function() {
 });
 
 /* Sass task */
-gulp.task('sass', function () {  
-    gulp.src('scss/style.scss')
-    .pipe(plumber())
-    .pipe(sass({
-      errLogToConsole: true,
-
-      //outputStyle: 'compressed',
-      // outputStyle: 'compact',
-      // outputStyle: 'nested',
-      outputStyle: 'expanded',
-      precision: 10
-    }))
-
-    .pipe(sourcemaps.init())
-    .pipe(autoprefixer({
-        browsers: ['last 2 versions'],
-        cascade: false
-    }))
-    .pipe(gulp.dest('css'))
-
-    .pipe(rename({suffix: '.min'}))
-    .pipe(minifycss())
-    .pipe(gulp.dest('css'))
-    /* Reload the browser CSS after every change */
-    .pipe(reload({stream:true}));
+gulp.task('sass', function () {
+    return gulp.src('scss/style.scss')
+        .pipe(plumber())
+        .pipe(sass({
+            errLogToConsole: true,
+            outputStyle: 'expanded',
+            precision: 10
+        }))
+        .pipe(sourcemaps.init())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
+        .pipe(gulp.dest('css'))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(minifycss())
+        .pipe(gulp.dest('css'))
+        .pipe(reload({ stream: true }));
 });
 
 gulp.task('merge-styles', function () {
@@ -112,26 +106,22 @@ gulp.task('bs-reload', function () {
     browserSync.reload();
 });
 
-/* Prepare Browser-sync for localhost */
 gulp.task('browser-sync', function() {
-    browserSync.init(['css/*.css', 'js/*.js'], {
-        
-        proxy: 'localhost/probootstrap/black'
-        /* For a static server you would use this: */
-        /*
+    browserSync.init({
         server: {
-            baseDir: './'
-        }
-        */
+            baseDir: './', // Specify the root directory of your website files
+        },
     });
 });
 
-/* Watch scss, js and html files, doing different things with each. */
-gulp.task('build', ['sass', 'scripts', 'browser-sync'], function () {
+
+gulp.task('build', gulp.series('sass', 'scripts', 'browser-sync', 'minify-main', function () {
     /* Watch scss, run the sass task on change. */
-    gulp.watch(['scss/*.scss', 'scss/**/*.scss'], ['sass'])
+    gulp.watch(['scss/*.scss', 'scss/**/*.scss'], gulp.series('sass'));
     /* Watch app.js file, run the scripts task on change. */
-    gulp.watch(['js/main.js'], ['minify-main'])
+    gulp.watch(['js/main.js'], gulp.series('minify-main'));
     /* Watch .html files, run the bs-reload task on change. */
-    gulp.watch(['*.html'], ['bs-reload']);
-});
+    gulp.watch(['*.html'], gulp.series('bs-reload'));
+}));
+
+
