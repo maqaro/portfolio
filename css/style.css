@@ -1695,6 +1695,21 @@ figure:hover figcaption, figure:focus figcaption {
   font-size: 28px;
 }
 
+.projectButtons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.projectButtons a{
+  width: 50%;
+  margin-bottom: 4vh;
+
+}
+
 /* Flexslider override style */
 .slider-height, .flexslider .slides > li, .flexslider2 .slides > li, .flexslider, .flexslider2 {
   height: 100vh;
@@ -1703,7 +1718,7 @@ figure:hover figcaption, figure:focus figcaption {
 @media screen and (max-width: 480px) {
   .slider-height, .flexslider .slides > li, .flexslider2 .slides > li, .flexslider, .flexslider2 {
     height: inherit;
-    height: 500px;
+    height: 100vh;
   }
 }
 
