@@ -74,6 +74,21 @@ p, ul, ol, figure {
   margin-bottom: 1.3em;
 }
 
+.technicalImages{
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.technicalImages ul{
+  list-style: none;
+}
+
+.technicalImages img {
+  width: 50%; /* Adjust this percentage to control the size */
+  height: auto; /* Automatically adjust the height to maintain aspect ratio */
+}
+
 a {
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
